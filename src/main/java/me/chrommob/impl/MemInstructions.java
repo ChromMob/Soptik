@@ -43,7 +43,7 @@ public class MemInstructions implements Instruction {
     @Override
     public String codeRepresentation() {
         if (type == InstructionType.LOAD)
-            return "reg" + regSaveInt + " = mem[reg" + regLoadInt + " + " + regPlusInt + "]";
-        return "mem[reg" + regLoadInt + " + " + regPlusInt + " = reg" + regSave;
+            return "reg" + regSaveInt + " = mem[reg" + regLoadInt + "] + " + regPlusInt + "]";
+        return "mem[reg" + regLoadInt + " + " + regPlusInt + "] = reg" + regSave;
     }
 }

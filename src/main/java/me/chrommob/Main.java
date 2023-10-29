@@ -12,7 +12,8 @@ public class Main {
         File byteOutput = new File("ouputByte.sopt");
         Transpiler tp = new Transpiler();
 
-
+        tp.setValueOfReg(1, 0, 50);
+        tp.storeFromRegToMem(0, 1, 100);
 
         if (tp.getInstructionList().size() > 256)
             throw new IllegalArgumentException("TOO MUCH");
