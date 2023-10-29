@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         File output = new File("output.sopt");
-        File byteOutput = new File("ouputByte.sop");
+        File byteOutput = new File("ouputByte.sopt");
         Transpiler tp = new Transpiler();
 
 
