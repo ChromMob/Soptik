@@ -16,11 +16,13 @@ public interface Instruction {
 
         int hexLength = hexadecimal.length();
         int zeroCount = bitSize/4 - hexLength;
-        if (hexLength + zeroCount > bitSize/4)
-            throw new IllegalArgumentException();
 
         formattedHex.append("0".repeat(Math.max(0, zeroCount)));
         formattedHex.append(hexadecimal);
+
+        if (formattedHex.length() > bitSize/4)
+            throw new IllegalArgumentException("Number is too big");
+
         return formattedHex.toString();
     }
 

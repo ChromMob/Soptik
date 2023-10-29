@@ -1,4 +1,1 @@
-nothing
-reg 2 += reg 1 + 5
-reg 1 = reg 2 + 296
-BOMB 0
+BOMB 564156465

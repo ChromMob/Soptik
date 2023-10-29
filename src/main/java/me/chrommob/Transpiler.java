@@ -1,9 +1,6 @@
 package me.chrommob;
 
-import me.chrommob.impl.AritmhInsructions;
-import me.chrommob.impl.BombInstruction;
-import me.chrommob.impl.MemInstructions;
-import me.chrommob.impl.NopInstruction;
+import me.chrommob.impl.*;
 import me.chrommob.instructions.Instruction;
 import me.chrommob.instructions.InstructionType;
 
@@ -43,6 +40,46 @@ class Transpiler {
 
     public void storeFromRegToMem(int regToSave, int regToAddTo, int regPlus) {
         addIns(new MemInstructions(regToSave, regToAddTo, regPlus, InstructionType.STORE));
+    }
+
+    public void jumpIfEquals(int value1, int value2, int jump) {
+        if (jump > 0) {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.FORWARD, JumpInstruction.ComparisonType.EQUALS));
+        } else {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.BACK, JumpInstruction.ComparisonType.EQUALS));
+        }
+    }
+
+    public void jumpIfNotEquals(int value1, int value2, int jump) {
+        if (jump > 0) {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.FORWARD, JumpInstruction.ComparisonType.NOTEQUALS));
+        } else {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.BACK, JumpInstruction.ComparisonType.NOTEQUALS));
+        }
+    }
+
+    public void jumpIfSmaller(int value1, int value2, int jump) {
+        if (jump > 0) {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.FORWARD, JumpInstruction.ComparisonType.SMALLER));
+        } else {
+            addIns(new JumpInstruction(value1, value2, jump, JumpInstruction.JumpType.BACK, JumpInstruction.ComparisonType.SMALLER));
+        }
+    }
+
+    public void jumpIfBigger(int value1, int value2, int jump) {
+        if (jump > 0) {
+            addIns(new JumpInstruction(value2, value1, jump, JumpInstruction.JumpType.FORWARD, JumpInstruction.ComparisonType.SMALLER));
+        } else {
+            addIns(new JumpInstruction(value2, value1, jump, JumpInstruction.JumpType.BACK, JumpInstruction.ComparisonType.SMALLER));
+        }
+    }
+
+    public void setLowerBites(int reg, int value) {
+        addIns(new SetInstruction(reg, value, InstructionType.SETIMMLOW));
+    }
+
+    public void setHigherBites(int reg, int value) {
+        addIns(new SetInstruction(reg, value, InstructionType.SETIMMHIGH));
     }
 
     public void addBomb(int delay) {

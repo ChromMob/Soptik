@@ -12,11 +12,11 @@ public class Main {
         File byteOutput = new File("ouputByte.sop");
         Transpiler tp = new Transpiler();
 
-        tp.addNop();
-        tp.addAdd(1, 5, 2);
-        tp.setValueOfReg(1, 2, 296);
-        tp.addBomb(0);
-        
+
+
+        if (tp.getInstructionList().size() > 256)
+            throw new IllegalArgumentException("TOO MUCH");
+
         if (byteOutput.exists()) {
             byteOutput.delete();
         } else {
