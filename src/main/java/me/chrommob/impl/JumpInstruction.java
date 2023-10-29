@@ -94,6 +94,6 @@ public class JumpInstruction implements Instruction {
         };
         String comparator2 = jumpType == JumpType.FORWARD ? "+" : "-";
         return "if (reg" + value1Int + " " +
-                comparator + " reg" + value2Int + " pc " + comparator2 + "= imm";
+                comparator + " reg)" + value2Int + " pc " + comparator2 + "= imm";
     }
 }
